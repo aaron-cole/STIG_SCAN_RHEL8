@@ -26,7 +26,7 @@ echo $STIGID >> $Results
 filetocheck="$(grep "^dir = " /etc/security/faillock.conf | awk '{print $3}')"
 
 echo "$filetocheck from /etc/security/faillock" >> $Results
-if [ -e $filetocheck ]; then
+if [ -d $filetocheck ]; then
  if grep "\-w $filetocheck \-p wa" /etc/audit/audit.rules >> $Results; then
   echo "Pass" >> $Results
  else 
