@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if ! auditctl -l | grep "\-w /etc/sudoers.d/ -p wa" >> $Results; then
+if ! auditctl -l | grep "\-w /etc/sudoers.d -p wa" >> $Results; then
  echo "Rule does not exist" >> $Results
  echo "Fail" >> $Results
 else
