@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if blkid | grep -v "crypto_LUKS"; then
+if blkid | grep -v "crypto_LUKS" >> $Results; then
  echo "Ensure none are pseudo file systems" >> $Results
  echo "Fail" >> $Results 
 else 
