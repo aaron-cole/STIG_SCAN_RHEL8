@@ -24,7 +24,7 @@ echo $STIGID >> $Results
 ###Check###
 scorecheck=0
 
-for package in openssl_pkcs11 esc ; do
+for package in openssl-pkcs11 esc ; do
  if rpm -q $package >> $Results; then
   echo "" >> /dev/null
  else

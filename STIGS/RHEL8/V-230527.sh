@@ -25,7 +25,7 @@ echo $STIGID >> $Results
 
 if [ -f /etc/ssh/sshd_config ] && [ "$(grep "^RekeyLimit" /etc/ssh/sshd_config | wc -l)" -eq 1 ]; then
 awk -v opf="$Results" '/^RekeyLimit/ {
-	if($2 == "1G 1h") {
+	if($2$3 == "1G1h") {
 	 print $0 >> opf
 	 print "Pass" >> opf
 	} else {

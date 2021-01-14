@@ -25,7 +25,7 @@ echo $STIGID >> $Results
 
 if [ -f /etc/chrony.conf ] && [ "$(grep "^port " /etc/chrony.conf | wc -l)" -eq 1 ]; then
 awk -v opf="$Results" -F= '/^port / {
-	if($2 == 0) {
+	if($2 == "0") {
 	 print $0 >> opf
 	 print "Pass" >> opf
 	} else {

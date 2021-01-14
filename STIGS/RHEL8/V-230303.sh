@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if egrep -v "ext|#|swap|gfs|xfs" /etc/fstab | grep "^\/" >> $Results; then 
+if egrep -v "ext|^#|swap|gfs|xfs" /etc/fstab | grep "^\/" >> $Results; then 
  if [ "$(egrep -v "ext|#|swap|gfs|xfs" /etc/fstab | grep "^\/" | wc -l)" == "$(egrep -v "ext|#|swap|gfs" /etc/fstab | grep "^\/" | grep nodev | wc -l)" ]; then 
   echo "Pass" >> $Results
  else

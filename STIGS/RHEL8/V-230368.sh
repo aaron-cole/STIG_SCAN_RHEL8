@@ -26,7 +26,7 @@ scorecheck=0
 filestocheck="/etc/pam.d/system-auth /etc/pam.d/password-auth"
 
 for filetocheck in $filestocheck; do
- if grep "^password.*required.*pam_pwhistory.so.*remember=[5-9]" $filetocheck >> $Results; then
+ if grep "^password.*[required|requisite].*pam_pwhistory.so.*remember=[5-9]" $filetocheck >> $Results; then
   echo "" >> /dev/null
  else
   echo "remember not set in $filetocheck" >> $Results

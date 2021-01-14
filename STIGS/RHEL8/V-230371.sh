@@ -23,7 +23,8 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd >> $Results; then
+if [ "$(awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd)" ]; then
+ awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd >> $Results
  echo "Fail" >> $Results
 else
  echo "No duplicate UIDs found" >> $Results

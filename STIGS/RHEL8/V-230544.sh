@@ -27,11 +27,11 @@ chkfiles="$(grep "^net.ipv4.conf.all.accept_redirects " /etc/sysctl.conf /etc/sy
 
 if [ -n "$chkfiles" ]; then
 for chkfile in $chkfiles; do
- if [ "$(grep "^net.ipv4.conf.all.accept_redirects " "$chkfile" | sort | uniq | wc -l)" -eq 1 ]; then
-  chkvalues="$(grep "^net.ipv4.conf.all.accept_redirects " "$chkfile" | cut -f 2 -d"=")"
+ if [ "$(grep "^net.ipv4.conf.all.accept_redirects" "$chkfile" | sort | uniq | wc -l)" -eq 1 ]; then
+  chkvalues="$(grep "^net.ipv4.conf.all.accept_redirects" "$chkfile" | cut -f 2 -d"=")"
   for chkvalue in $chkvalues; do
    if [ "$chkvalue" -eq 0 ]; then
-    echo "Pass - Setting found in $chkfile - $(grep "^net.ipv4.conf.all.accept_redirects " "$chkfile")" >> $Results
+    echo "Pass - Setting found in $chkfile - $(grep "^net.ipv4.conf.all.accept_redirects" "$chkfile")" >> $Results
    else
     echo "Fail - Setting not found in $chkfile" >> $Results
    fi
@@ -53,15 +53,15 @@ sysctl net.ipv4.conf.all.accept_redirects  | awk -v opf="$Results" '/^net.ipv4.c
 	 }
 }'
 
-chkfiles="$(grep "^net.ipv6.conf.all.accept_redirects " /etc/sysctl.conf /etc/sysctl.d/* | cut -f 1 -d ":" | sort | uniq)"
+chkfiles="$(grep "^net.ipv6.conf.all.accept_redirects" /etc/sysctl.conf /etc/sysctl.d/* | cut -f 1 -d ":" | sort | uniq)"
 
 if [ -n "$chkfiles" ]; then
 for chkfile in $chkfiles; do
- if [ "$(grep "^net.ipv6.conf.all.accept_redirects " "$chkfile" | sort | uniq | wc -l)" -eq 1 ]; then
-  chkvalues="$(grep "^net.ipv6.conf.all.accept_redirects " "$chkfile" | cut -f 2 -d"=")"
+ if [ "$(grep "^net.ipv6.conf.all.accept_redirects" "$chkfile" | sort | uniq | wc -l)" -eq 1 ]; then
+  chkvalues="$(grep "^net.ipv6.conf.all.accept_redirects" "$chkfile" | cut -f 2 -d"=")"
   for chkvalue in $chkvalues; do
    if [ "$chkvalue" -eq 0 ]; then
-    echo "Pass - Setting found in $chkfile - $(grep "^net.ipv6.conf.all.accept_redirects " "$chkfile")" >> $Results
+    echo "Pass - Setting found in $chkfile - $(grep "^net.ipv6.conf.all.accept_redirects" "$chkfile")" >> $Results
    else
     echo "Fail - Setting not found in $chkfile" >> $Results
    fi

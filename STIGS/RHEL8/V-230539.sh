@@ -23,15 +23,15 @@ echo $STIGID >> $Results
 
 ###Check###
 
-chkfiles="$(grep "^net.ipv4.conf.default.accept_source_route " /etc/sysctl.conf /etc/sysctl.d/* | cut -f 1 -d ":" | sort | uniq)"
+chkfiles="$(grep "^net.ipv4.conf.default.accept_source_route" /etc/sysctl.conf /etc/sysctl.d/* | cut -f 1 -d ":" | sort | uniq)"
 
 if [ -n "$chkfiles" ]; then
 for chkfile in $chkfiles; do
- if [ "$(grep "^net.ipv4.conf.default.accept_source_route " "$chkfile" | sort | uniq | wc -l)" -eq 1 ]; then
-  chkvalues="$(grep "^net.ipv4.conf.default.accept_source_route " "$chkfile" | cut -f 2 -d"=")"
+ if [ "$(grep "^net.ipv4.conf.default.accept_source_route" "$chkfile" | sort | uniq | wc -l)" -eq 1 ]; then
+  chkvalues="$(grep "^net.ipv4.conf.default.accept_source_route" "$chkfile" | cut -f 2 -d"=")"
   for chkvalue in $chkvalues; do
    if [ "$chkvalue" -eq 0 ]; then
-    echo "Pass - Setting found in $chkfile - $(grep "^net.ipv4.conf.default.accept_source_route " "$chkfile")" >> $Results
+    echo "Pass - Setting found in $chkfile - $(grep "^net.ipv4.conf.default.accept_source_route" "$chkfile")" >> $Results
    else
     echo "Fail - Setting not found in $chkfile" >> $Results
    fi
@@ -53,15 +53,15 @@ sysctl net.ipv4.conf.default.accept_source_route  | awk -v opf="$Results" '/^net
 	 }
 }'
 
-chkfiles="$(grep "^net.ipv6.conf.default.accept_source_route " /etc/sysctl.conf /etc/sysctl.d/* | cut -f 1 -d ":" | sort | uniq)"
+chkfiles="$(grep "^net.ipv6.conf.default.accept_source_route" /etc/sysctl.conf /etc/sysctl.d/* | cut -f 1 -d ":" | sort | uniq)"
 
 if [ -n "$chkfiles" ]; then
 for chkfile in $chkfiles; do
- if [ "$(grep "^net.ipv6.conf.default.accept_source_route " "$chkfile" | sort | uniq | wc -l)" -eq 1 ]; then
-  chkvalues="$(grep "^net.ipv6.conf.default.accept_source_route " "$chkfile" | cut -f 2 -d"=")"
+ if [ "$(grep "^net.ipv6.conf.default.accept_source_route" "$chkfile" | sort | uniq | wc -l)" -eq 1 ]; then
+  chkvalues="$(grep "^net.ipv6.conf.default.accept_source_route" "$chkfile" | cut -f 2 -d"=")"
   for chkvalue in $chkvalues; do
    if [ "$chkvalue" -eq 0 ]; then
-    echo "Pass - Setting found in $chkfile - $(grep "^net.ipv6.conf.default.accept_source_route " "$chkfile")" >> $Results
+    echo "Pass - Setting found in $chkfile - $(grep "^net.ipv6.conf.default.accept_source_route" "$chkfile")" >> $Results
    else
     echo "Fail - Setting not found in $chkfile" >> $Results
    fi

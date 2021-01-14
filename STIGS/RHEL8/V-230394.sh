@@ -33,6 +33,6 @@ elif grep "^action = yes" /etc/audit/plugins.d/syslog.conf >> $Results; then
   echo "Fail" >> $Results
  fi
 else
- echo "overflow_action not set" >> $Results
+ echo "name_format not set" >> $Results
  echo "Fail" >> $Results
 fi

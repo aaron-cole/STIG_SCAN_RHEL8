@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
-findfile="$(find -L /lib /lib64 /usr/lib /usr/lib64 -type f ! -group root -a ! -group sssd -a ! -group utmp -a ! -group dbus -a ! -group tty -a ! -group ssh_keys -a ! -group cockpit-wsinstance -a ! -group slocate)"
+findfile="$(find -L /lib /lib64 /usr/lib /usr/lib64 -type f ! -group root -a ! -group sssd -a ! -group utmp -a ! -group dbus -a ! -group tty -a ! -group ssh_keys -a ! -group cockpit-wsinstance -a ! -group slocate -a ! -group pcpqa)"
 
 if [ -n "$findfile" ]; then
  echo "files found $findfile" >> $Results
