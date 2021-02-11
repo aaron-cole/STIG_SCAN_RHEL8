@@ -26,7 +26,7 @@ scorecheck=0
 itemstocheck="auth authpriv daemon"
 
 for itemtocheck in $itemstocheck; do
- if grep "^$itemtocheck\.\*" /etc/rsyslog.conf >> $Results; then
+ if grep "$itemtocheck\.\*" /etc/rsyslog.conf | grep -v "^#" >> $Results; then
   echo "" >> /dev/null
  else
   echo "$itemtocheck logging not found" >> $Results 
