@@ -23,8 +23,8 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if [ -f /etc/crypto-policies/back-ends/opensslcnf.config ] && [ "$(grep "^MinProtocol:"  /etc/crypto-policies/back-ends/opensslcnf.config | wc -l)" -eq 1 ]; then
-awk -v opf="$Results" '/^MinProtocol:/ {
+if [ -f /etc/crypto-policies/back-ends/opensslcnf.config ] && [ "$(grep "^MinProtocol = "  /etc/crypto-policies/back-ends/opensslcnf.config | wc -l)" -eq 1 ]; then
+awk -v opf="$Results" '/^MinProtocol = / {
 	if($3 == "TLSv1.2") {
 	 print $0 >> opf
 	 print "Pass" >> opf

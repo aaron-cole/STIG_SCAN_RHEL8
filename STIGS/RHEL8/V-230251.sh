@@ -29,8 +29,8 @@ if grep "CRYPTO_POLICY=" /etc/sysconfig/sshd | grep -v "^#" >> $Results; then
 else
  if [ "$(update-crypto-policies --show)" == "FIPS" ]; then
   update-crypto-policies --show >> $Results
-  grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/openssh.config | sed 's/.*MACs=//g' | awk '{print $1}' >> $Results
-  if [ "$(grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/openssh.config | sed 's/.*MACs=//g' | awk '{print $1}')" == "hmac-sha2-512,hmac-sha2-256" ]; then
+  grep "^MACs " /etc/crypto-policies/back-ends/openssh.config >> $Results
+  if [ "$(grep "^MACs " /etc/crypto-policies/back-ends/openssh.config | awk '{print $2}')" == "hmac-sha2-512,hmac-sha2-256" ]; then
    grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/opensshserver.config | sed 's/.*MACs=//g' | awk '{print $1}' >> $Results
    if [ "$(grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/opensshserver.config | sed 's/.*MACs=//g' | awk '{print $1}')" == "hmac-sha2-512,hmac-sha2-256" ]; then  
     echo "Pass" >> $Results

@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
-chkfiles="$(grep "^net.ipv4.conf.all.accept_redirects " /etc/sysctl.conf /etc/sysctl.d/* | cut -f 1 -d ":" | sort | uniq)"
+chkfiles="$(grep "^net.ipv4.conf.all.accept_redirects" /etc/sysctl.conf /etc/sysctl.d/* | cut -f 1 -d ":" | sort | uniq)"
 
 if [ -n "$chkfiles" ]; then
 for chkfile in $chkfiles; do

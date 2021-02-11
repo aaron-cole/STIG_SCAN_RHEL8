@@ -24,7 +24,7 @@ echo $STIGID >> $Results
 ###Check###
 
 if [ -f /etc/chrony.conf ] && [ "$(grep "^cmdport " /etc/chrony.conf | wc -l)" -eq 1 ]; then
-awk -v opf="$Results" -F= '/^cmdport / {
+awk -v opf="$Results" '/^cmdport / {
 	if($2 == "0") {
 	 print $0 >> opf
 	 print "Pass" >> opf

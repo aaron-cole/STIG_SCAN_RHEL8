@@ -29,8 +29,8 @@ if grep "CRYPTO_POLICY=" /etc/sysconfig/sshd | grep -v "^#" >> $Results; then
 else
  if [ "$(update-crypto-policies --show)" == "FIPS" ]; then
   update-crypto-policies --show >> $Results
-  grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/openssh.config | sed 's/.*oCiphers=//g' | awk '{print $1}' >> $Results
-  if [ "$(grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/openssh.config | sed 's/.*oCiphers=//g' | awk '{print $1}')" == "aes256-ctr,aes192-ctr,aes128-ctr" ]; then
+  grep "^Ciphers " /etc/crypto-policies/back-ends/openssh.config >> $Results
+  if [ "$(grep "^Ciphers " /etc/crypto-policies/back-ends/openssh.config | awk '{print $2}')" == "aes256-ctr,aes192-ctr,aes128-ctr" ]; then
    grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/opensshserver.config | sed 's/.*oCiphers=//g' | awk '{print $1}' >> $Results
    if [ "$(grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/opensshserver.config | sed 's/.*oCiphers=//g' | awk '{print $1}')" == "aes256-ctr,aes192-ctr,aes128-ctr" ]; then  
     echo "Pass" >> $Results

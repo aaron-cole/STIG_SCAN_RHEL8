@@ -25,17 +25,15 @@ echo $STIGID >> $Results
 scorecheck=0
 itemstocheck="auth authpriv daemon"
 
-if grep "^\*\.\*" /etc/rsyslog.conf >> $Results; then
- echo "Pass" >> $Results
-else
- for itemtocheck in $itemstocheck; do
-  if grep "^$itemtocheck\.\*" /etc/rsyslog.conf >> $Results; then
-   echo "" >> /dev/null
-  else
-   echo "$itemtocheck logging not found" >> $Results 
-   ((scorecheck+=1))
-  fi
- done
+for itemtocheck in $itemstocheck; do
+ if grep "^$itemtocheck\.\*" /etc/rsyslog.conf >> $Results; then
+  echo "" >> /dev/null
+ else
+  echo "$itemtocheck logging not found" >> $Results 
+  ((scorecheck+=1))
+ fi
+done
+
  if [ "$scorecheck" != 0 ]; then
   echo "Fail" >> $Results 
  else 
