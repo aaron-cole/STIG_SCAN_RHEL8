@@ -26,7 +26,7 @@ scorecheck=0
 filestocheck="/etc/pam.d/system-auth /etc/pam.d/password-auth"
 
 for filetocheck in $filestocheck; do
- if grep "^password.*required.*pam_pwquality.so.*retry=[1-3]" $filetocheck >> $Results; then
+ if grep "^password.*req.*pam_pwquality.so.*retry=[1-3]" $filetocheck >> $Results; then
   echo "" >> /dev/null
  else
   echo "retry not set in $filetocheck" >> $Results

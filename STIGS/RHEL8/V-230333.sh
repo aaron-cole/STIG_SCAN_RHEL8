@@ -26,13 +26,15 @@ scorecheck=0
 filestocheck="/etc/pam.d/system-auth /etc/pam.d/password-auth"
 
 for filetocheck in $filestocheck; do
- if grep "^auth.*required.*pam_faillock.so preauth" $filetocheck >> $Results; then
+ if grep "^auth.*req.*pam_faillock.so preauth" $filetocheck >> $Results; then
   echo "" >> /dev/null
  else
   echo "auth pam_faillock.so preauth not set in $filetocheck" >> $Results
   ((scorecheck+=1)) 
  fi
- if grep "^auth.*required.*pam_faillock.so authfail" $filetocheck >> $Results; then
+ if grep "^auth.*req*.*pam_faillock.so authfail" $filetocheck >> $Results; then
+  echo "" >> /dev/null
+ elif grep "^auth.*default=die*.*pam_faillock.so authfail" $filetocheck >> $Results; then
   echo "" >> /dev/null
  else
   echo "auth pam_faillock.so authfail not set in $filetocheck" >> $Results
