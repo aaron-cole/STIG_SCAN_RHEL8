@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if pwck -r | grep "directory" | grep "does not exist" | egrep -v "avahi-autoipd|ftp|saslauth|pulse|gnome|memcached|hacluster" >> $Results 2>>/dev/null; then
+if pwck -r | grep "directory" | grep "does not exist" | egrep -v "avahi-autoipd|ftp|saslauth|pulse|gnome|memcached|hacluster|clevis|rngd|cockpit-wsinstance" >> $Results 2>>/dev/null; then
  echo "Fail" >> $Results
 else
  echo "Nothing Found" >> $Results  
