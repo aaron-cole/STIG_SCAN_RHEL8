@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230242"
 GrpTitle="SRG-OS-000138-GPOS-00069"
-RuleID="SV-230242r599732_rule"
+RuleID="SV-230242r627750_rule"
 STIGID="RHEL-08-010180"
 Results="./Results/$GrpID"
 
@@ -21,7 +21,7 @@ echo $RuleID >> $Results
 echo $STIGID >> $Results
 ##END of Automatic Items##
 
-#Check
+###Check###
 
 wwdir="$(find / -perm -0002 -type d ! -user root 2>>/dev/null)"
 

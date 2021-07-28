@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230391"
 GrpTitle="SRG-OS-000047-GPOS-00023"
-RuleID="SV-230391r599732_rule"
+RuleID="SV-230391r743998_rule"
 STIGID="RHEL-08-030050"
 Results="./Results/$GrpID"
 
@@ -26,6 +26,6 @@ echo $STIGID >> $Results
 if grep "^max_log_file_action" /etc/audit/auditd.conf | egrep -vi "suspend|ignore|exec|warn|stop|rotate" | egrep -i "syslog|keep_logs" >> $Results; then
  echo "Pass" >> $Results
 else
- echo "max_log_file_action not set properly in /etc/audisp/audisp-remote.conf" >> $Results
+ echo "max_log_file_action not set properly in /etc/audit/auditd.conf" >> $Results
  echo "Fail" >> $Results
 fi

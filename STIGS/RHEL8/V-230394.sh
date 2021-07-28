@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230394"
 GrpTitle="SRG-OS-000342-GPOS-00133"
-RuleID="SV-230394r599732_rule"
+RuleID="SV-230394r627750_rule"
 STIGID="RHEL-08-030062"
 Results="./Results/$GrpID"
 
@@ -25,13 +25,6 @@ echo $STIGID >> $Results
 
 if grep "^name_format =" /etc/audit/auditd.conf | egrep -vi "none|user" | egrep -i "hostname|fqdn|numeric" >> $Results; then
  echo "Pass" >> $Results
-elif grep "^action = yes" /etc/audit/plugins.d/syslog.conf >> $Results; then
- if grep "^.*@" /etc/rsyslog.conf | grep -v "^#" >> $Results; then 
-  echo "Logs are being to sent through rsyslog to remote log server" >> $Results
-  echo "Pass" >> $Results
- else 
-  echo "Fail" >> $Results
- fi
 else
  echo "name_format not set" >> $Results
  echo "Fail" >> $Results

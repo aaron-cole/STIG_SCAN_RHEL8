@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230539"
 GrpTitle="SRG-OS-000480-GPOS-00227"
-RuleID="SV-230539r599732_rule"
+RuleID="SV-230539r744045_rule"
 STIGID="RHEL-08-040250"
 Results="./Results/$GrpID"
 
@@ -22,36 +22,6 @@ echo $STIGID >> $Results
 ##END of Automatic Items##
 
 ###Check###
-
-chkfiles="$(grep "^net.ipv4.conf.default.accept_source_route" /etc/sysctl.conf /etc/sysctl.d/* | cut -f 1 -d ":" | sort | uniq)"
-
-if [ -n "$chkfiles" ]; then
-for chkfile in $chkfiles; do
- if [ "$(grep "^net.ipv4.conf.default.accept_source_route" "$chkfile" | sort | uniq | wc -l)" -eq 1 ]; then
-  chkvalues="$(grep "^net.ipv4.conf.default.accept_source_route" "$chkfile" | cut -f 2 -d"=")"
-  for chkvalue in $chkvalues; do
-   if [ "$chkvalue" -eq 0 ]; then
-    echo "Pass - Setting found in $chkfile - $(grep "^net.ipv4.conf.default.accept_source_route" "$chkfile")" >> $Results
-   else
-    echo "Fail - Setting not found in $chkfile" >> $Results
-   fi
-  done
- else
-  echo "Fail - $chkfile - too many entries" >> $Results
- fi
-done
-else
- echo "Fail - Setting Not Found in any files" >> $Results
-fi
-  
-#Runtime
-sysctl net.ipv4.conf.default.accept_source_route  | awk -v opf="$Results" '/^net.ipv4.conf.default.accept_source_route / {
-	if($3 == 0) {
-	 print "Pass - Setting Found in runtime -" $0 >> opf
-	 } else {
-	 print "Fail - Setting Not Found in runtime -" $0 >> opf
-	 }
-}'
 
 chkfiles="$(grep "^net.ipv6.conf.default.accept_source_route" /etc/sysctl.conf /etc/sysctl.d/* | cut -f 1 -d ":" | sort | uniq)"
 

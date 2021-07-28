@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230367"
 GrpTitle="SRG-OS-000076-GPOS-00044"
-RuleID="SV-230367r599732_rule"
+RuleID="SV-230367r627750_rule"
 STIGID="RHEL-08-020210"
 Results="./Results/$GrpID"
 
@@ -23,11 +23,11 @@ echo $STIGID >> $Results
 
 ###Check###
 scorecheck=0
-systemaccounts="patrol heimdall oracle hacluster bb"
+systemaccounts="heimdall oracle hacluster"
 
 for user in $(cut -f1 -d ":" /etc/shadow); do
  case $user in
-	patrol|heimdall|oracle|hacluster) echo "$user - System Account - excluded" >> $Results;;
+	heimdall|oracle|hacluster) echo "$user - System Account - excluded" >> $Results;;
 	*)	if [[ "$(grep "^$user:" /etc/shadow | cut -f 2 -d ":")" =~ ^\$6* ]] && [[ "$user" != "root" ]]; then 
 		 if [[ "$(grep "^$user:" /etc/shadow | cut -f 5 -d ":")" -gt 60 ]]; then 
 		  echo "$user - Fix" >> $Results

@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230235"
 GrpTitle="SRG-OS-000080-GPOS-00048"
-RuleID="SV-230235r599732_rule"
+RuleID="SV-230235r743925_rule"
 STIGID="RHEL-08-010150"
 Results="./Results/$GrpID"
 
@@ -20,6 +20,8 @@ echo $GrpTitle >> $Results
 echo $RuleID >> $Results
 echo $STIGID >> $Results
 ##END of Automatic Items##
+
+###Check###
 
 if [ -e /boot/efi/EFI/redhat/grub.cfg ]; then 
  echo "UEFI" >> $Results

@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230275"
 GrpTitle="SRG-OS-000376-GPOS-00161"
-RuleID="SV-230275r599732_rule"
+RuleID="SV-230275r627750_rule"
 STIGID="RHEL-08-010410"
 Results="./Results/$GrpID"
 
@@ -23,18 +23,14 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if rpm -q gnutls >> $Results; then
- if rpm -q opensc >> $Results; then
-  if opensc-tool --list-drivers | grep "PIV-II" >> $Results; then
-   echo "Pass" >> $Results
-  else 
-   echo "PIV Drivers not installed" >> $Results
-   echo "Fail" >> $Results
-  fi
- else
-  echo "opensc not installed" >> $Results
+if rpm -q opensc >> $Results; then
+ if opensc-tool --list-drivers | grep "PIV-II" >> $Results; then
+  echo "Pass" >> $Results
+ else 
+  echo "PIV Drivers not installed" >> $Results
   echo "Fail" >> $Results
  fi
-else 
+else
+ echo "opensc not installed" >> $Results
  echo "Fail" >> $Results
 fi

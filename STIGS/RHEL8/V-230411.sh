@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230411"
 GrpTitle="SRG-OS-000062-GPOS-00031"
-RuleID="SV-230411r599732_rule"
+RuleID="SV-230411r744000_rule"
 STIGID="RHEL-08-030180"
 Results="./Results/$GrpID"
 
@@ -24,14 +24,14 @@ echo $STIGID >> $Results
 ###Check###
 
 if rpm -q audit >> $Results; then
- echo "Startup status- $(systemctl is-enabled auditd)" >> $Results
- echo "Running status- $(systemctl is-active auditd)" >> $Results
- if [ "$(systemctl is-enabled auditd)" == "enabled" ] && [ "$(systemctl is-active auditd)" == "active" ]; then
-  echo "Current audit State - $(systemctl status auditd)" >> $Results
+# echo "Startup status- $(systemctl is-enabled auditd)" >> $Results
+# echo "Running status- $(systemctl is-active auditd)" >> $Results
+# if [ "$(systemctl is-enabled auditd)" == "enabled" ] && [ "$(systemctl is-active auditd)" == "active" ]; then
+#  echo "Current audit State - $(systemctl status auditd)" >> $Results
   echo "Pass" >> $Results
- else 
-  echo "Fail" >> $Results
- fi
+# else 
+#  echo "Fail" >> $Results
+# fi
 else 
  echo "Fail" >> $Results
 fi

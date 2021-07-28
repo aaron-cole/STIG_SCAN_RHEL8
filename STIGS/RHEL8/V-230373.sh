@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230373"
 GrpTitle="SRG-OS-000118-GPOS-00060"
-RuleID="SV-230373r599732_rule"
+RuleID="SV-230373r627750_rule"
 STIGID="RHEL-08-020260"
 Results="./Results/$GrpID"
 
@@ -22,7 +22,6 @@ echo $STIGID >> $Results
 ##END of Automatic Items##
 
 ###Check###
-
 
 if [ -f /etc/default/useradd ] && [ "$(grep "^INACTIVE" /etc/default/useradd | wc -l)" -eq 1 ]; then
 awk -v opf="$Results" -F= '/^INACTIVE/ {

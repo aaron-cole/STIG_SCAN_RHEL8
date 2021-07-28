@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230416"
 GrpTitle="SRG-OS-000062-GPOS-00031"
-RuleID="SV-230416r599732_rule"
+RuleID="SV-230416r627750_rule"
 STIGID="RHEL-08-030230"
 Results="./Results/$GrpID"
 
@@ -32,7 +32,11 @@ fi
 
 for f in $rules; do
  if ! auditctl -l | grep "\-a always,exit -F arch=$f -S.*[ ,]fsetxattr[, ].*-F auid>=1000 -F auid!=-1" >> $Results; then
-  echo "$f rule does not exist" >> $Results 
+  echo "$f >1000 rule does not exist" >> $Results 
+  ((scorecheck+=1))
+ fi
+ if ! auditctl -l | grep "\-a always,exit -F arch=$f -S.*[ ,]fsetxattr[, ].*-F auid=0" >> $Results; then
+  echo "$f =0 rule does not exist" >> $Results 
   ((scorecheck+=1))
  fi
 done

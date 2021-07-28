@@ -2,12 +2,12 @@
 ##Automatically defined items##
 
 #Vulnerability Discussion
-#Failure to restrict system access to authenticated users negatively impacts RHEL 8 security.
+#SSH environment options potentially allow users to bypass access restriction in some configurations.
 
 #STIG Identification
 GrpID="V-230330"
 GrpTitle="SRG-OS-000480-GPOS-00229"
-RuleID="SV-230330r599732_rule"
+RuleID="SV-230330r646870_rule"
 STIGID="RHEL-08-010830"
 Results="./Results/$GrpID"
 

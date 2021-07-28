@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230390"
 GrpTitle="SRG-OS-000047-GPOS-00023"
-RuleID="SV-230390r599732_rule"
+RuleID="SV-230390r627750_rule"
 STIGID="RHEL-08-030040"
 Results="./Results/$GrpID"
 
@@ -26,6 +26,6 @@ echo $STIGID >> $Results
 if grep "^disk_error_action" /etc/audit/auditd.conf | egrep -vi "suspend|ignore|exec|warn|stop" | egrep -i "syslog|single|halt" >> $Results; then
  echo "Pass" >> $Results
 else
- echo "disk_error_action not set properly in /etc/audisp/audisp-remote.conf" >> $Results
+ echo "disk_error_action not set properly in /etc/audit/auditd.conf" >> $Results
  echo "Fail" >> $Results
 fi

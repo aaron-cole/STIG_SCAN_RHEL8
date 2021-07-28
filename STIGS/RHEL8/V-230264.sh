@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230264"
 GrpTitle="SRG-OS-000366-GPOS-00153"
-RuleID="SV-230264r599732_rule"
+RuleID="SV-230264r627750_rule"
 STIGID="RHEL-08-010370"
 Results="./Results/$GrpID"
 
@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if grep gpgcheck=0 /etc/yum.repos.d/* >> $Results; then
+if grep gpgcheck=0 /etc/yum.repos.d/*.repo >> $Results; then
  echo "Fail" >> $Results 
 else
  echo "Nothing Found" >> $Results 

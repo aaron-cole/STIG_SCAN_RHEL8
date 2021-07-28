@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230234"
 GrpTitle="SRG-OS-000080-GPOS-00048"
-RuleID="SV-230234r599732_rule"
+RuleID="SV-230234r743922_rule"
 STIGID="RHEL-08-010140"
 Results="./Results/$GrpID"
 
@@ -26,18 +26,10 @@ echo $STIGID >> $Results
 if [ -e /boot/grub2/grub.cfg ]; then 
  echo "Server is using BIOS" >> $Results
  echo "NA" >> $Results
-elif [ "$(rpm -qi redhat-release-server | grep "^Version" | awk '{print $3}' | cut -f 2 -d ".")" -lt 2 ]; then
- rpm -q redhat-release-server >> $Results
- echo "NA" >> $Results
 elif [ -e /boot/efi/EFI/redhat/user.cfg ] && [ "$(grep "^GRUB2_PASSWORD=grub.pbkdf2.sha512" /boot/efi/EFI/redhat/user.cfg)" ]; then
  echo "Grub Password is defined - $(grep "^GRUB2_PASSWORD=grub.pbkdf2.sha512" /boot/efi/EFI/redhat/user.cfg)" >> $Results
- if grep 'set superusers="root"' /boot/efi/EFI/redhat/grub.cfg >> $Results; then
-  echo "superusers set as root" >> $Results
-  echo "Pass" >> $Results
- else
-  echo "superusers not set as root" >> $Results
-  echo "Fail" >> $Results
- fi
+ echo "Pass" >> $Results
 else 
+ echo "Grub Password is not defined" >> $Results
  echo "Fail" >> $Results
 fi

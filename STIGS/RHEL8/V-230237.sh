@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230237"
 GrpTitle="SRG-OS-000120-GPOS-00061"
-RuleID="SV-230237r599732_rule"
+RuleID="SV-230237r743931_rule"
 STIGID="RHEL-08-010160"
 Results="./Results/$GrpID"
 
@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 scorecheck=0
-filestocheck="/etc/pam.d/system-auth /etc/pam.d/password-auth"
+filestocheck="/etc/pam.d/password-auth"
 
 for filetocheck in $filestocheck; do
  if grep "^password.*pam_unix.so.*sha512" $filetocheck >> $Results; then

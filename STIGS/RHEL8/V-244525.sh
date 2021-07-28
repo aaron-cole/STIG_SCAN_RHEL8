@@ -5,10 +5,10 @@
 #
 
 #STIG Identification
-GrpID="V-230528"
-GrpTitle="SRG-OS-000033-GPOS-00014"
-RuleID="SV-230528r599732_rule"
-STIGID="RHEL-08-040162"
+GrpID="V-244525"
+GrpTitle="SRG-OS-000163-GPOS-00072"
+RuleID="SV-244525r743824_rule"
+STIGID="RHEL-08-010201"
 Results="./Results/$GrpID"
 
 #Remove File if already there
@@ -23,16 +23,16 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if [ -f /etc/ssh/ssh_config ] && [ "$(grep "^RekeyLimit" /etc/ssh/sshd_config | wc -l)" -eq 1 ]; then
-awk -v opf="$Results" '/^RekeyLimit/ {
-	if($2$3 == "1G1h") {
+if [ -f /etc/ssh/sshd_config ] && [ "$(grep "^ClientAliveInterval" /etc/ssh/sshd_config | wc -l)" -eq 1 ]; then
+awk -v opf="$Results" '/^ClientAliveInterval/ {
+	if($2 <= 600 && $2 > 0) {
 	 print $0 >> opf
 	 print "Pass" >> opf
 	} else {
 	 print $0 >> opf
 	 print "Fail" >> opf
 	}
-}' /etc/ssh/ssh_config
+}' /etc/ssh/sshd_config
 else
  echo "Setting not defined or more than 1 configuration" >> $Results
  echo "Fail" >> $Results

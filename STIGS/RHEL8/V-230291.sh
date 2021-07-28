@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230291"
 GrpTitle="SRG-OS-000480-GPOS-00227"
-RuleID="SV-230291r599732_rule"
+RuleID="SV-230291r743957_rule"
 STIGID="RHEL-08-010521"
 Results="./Results/$GrpID"
 
@@ -23,22 +23,6 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if [ -f /etc/ssh/sshd_config ] && [ "$(grep "^GSSAPIAuthentication" /etc/ssh/sshd_config | wc -l)" -eq 1 ]; then
-awk -v opf="$Results" '/^GSSAPIAuthentication/ {
-	if($2 == "no") {
-	 print $0 >> opf
-	 print "Pass" >> opf
-	} else {
-	 print $0 >> opf
-	 print "Fail" >> opf
-	}
-}' /etc/ssh/sshd_config
-else
- echo "Setting not defined or more than 1 configuration" >> $Results
- echo "Fail" >> $Results
-fi
-
-
 if [ -f /etc/ssh/sshd_config ] && [ "$(grep "^KerberosAuthentication" /etc/ssh/sshd_config | wc -l)" -eq 1 ]; then
 awk -v opf="$Results" '/^KerberosAuthentication/ {
 	if($2 == "no") {
@@ -52,10 +36,4 @@ awk -v opf="$Results" '/^KerberosAuthentication/ {
 else
  echo "Setting not defined or more than 1 configuration" >> $Results
  echo "Fail" >> $Results
-fi
-
-if grep "Fail" $Results >> /dev/null; then
- echo "Fail" >> $Results
-else
- echo "Pass" >> $Results
 fi

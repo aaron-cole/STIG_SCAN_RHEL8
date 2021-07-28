@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230524"
 GrpTitle="SRG-OS-000378-GPOS-00163"
-RuleID="SV-230524r599732_rule"
+RuleID="SV-230524r744026_rule"
 STIGID="RHEL-08-040140"
 Results="./Results/$GrpID"
 
@@ -23,11 +23,12 @@ echo $STIGID >> $Results
 
 ###Check###
 
-echo "usbguard.service status- $(systemctl status usbguard.service 2>>$Results)" >> $Results
-echo "Running status- $(systemctl is-active usbguard.service 2>>$Results)" >> $Results 
+rule_list="$(usbguard list-rules)"
+echo "USBGuard Rules" >> $Results
+echo $rule_list >> $Results
 
-if [ "$(systemctl is-enabled usbguard.service 2>>/dev/null)" == "enabled" ] && [ "$(systemctl is-active usbguard.service 2>>/dev/null)" == "active" ]; then
- echo "Pass" >> $Results
-else 
+if [ -z $rule_list ] ; then
  echo "Fail" >> $Results
+else 
+ echo "Pass" >> $Results
 fi

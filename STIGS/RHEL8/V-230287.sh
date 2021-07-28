@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230287"
 GrpTitle="SRG-OS-000480-GPOS-00227"
-RuleID="SV-230287r599732_rule"
+RuleID="SV-230287r743951_rule"
 STIGID="RHEL-08-010490"
 Results="./Results/$GrpID"
 
@@ -26,7 +26,8 @@ scorecheck=0
 
 for f in /etc/ssh/ssh_host*_key; do
  stat -c %n-%a $f >> $Results
- if [ "$(stat -c %a $f)" -eq "640" ] || [ "$(stat -c %a $f)" -eq "600" ]; then
+# if [ "$(stat -c %a $f)" -eq "640" ] || [ "$(stat -c %a $f)" -eq "600" ]; then
+ if [ "$(stat -c %a $f)" -eq "600" ]; then
   echo "" >> /dev/null
  else 
   ((scorecheck+=1))

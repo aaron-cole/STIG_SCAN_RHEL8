@@ -5,10 +5,10 @@
 #
 
 #STIG Identification
-GrpID="V-230490"
-GrpTitle="SRG-OS-000095-GPOS-00049"
-RuleID="SV-230490r599732_rule"
-STIGID="RHEL-08-040003"
+GrpID="V-244526"
+GrpTitle="SRG-OS-000250-GPOS-00093"
+RuleID="SV-244526r743827_rule"
+STIGID="RHEL-08-010287"
 Results="./Results/$GrpID"
 
 #Remove File if already there
@@ -23,8 +23,10 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if rpm -q gssproxy >> $Results; then
+if grep "CRYPTO_POLICY=" /etc/sysconfig/sshd | grep -v "^#" >> $Results; then
+ echo "CRYPTO_POLICY is defined in /etc/sysconfig/sshd" >> $Results
  echo "Fail" >> $Results
-else 
+else
+ grep "CRYPTO_POLICY=" /etc/sysconfig/sshd >> $Results
  echo "Pass" >> $Results
 fi

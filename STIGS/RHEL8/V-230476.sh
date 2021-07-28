@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230476"
 GrpTitle="SRG-OS-000341-GPOS-00132"
-RuleID="SV-230476r599732_rule"
+RuleID="SV-230476r627750_rule"
 STIGID="RHEL-08-030660"
 Results="./Results/$GrpID"
 
@@ -23,6 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
+df -h /var/log/audit >> $Results
 echo "Do you have a weeks worth of audit logs?" >> $Results
 echo "Manual check" >> $Results
 echo "Fail" >> $Results

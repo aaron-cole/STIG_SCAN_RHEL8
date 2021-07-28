@@ -1,4 +1,4 @@
-#!/bin/sh
+ #!/bin/sh
 ##Automatically defined items##
 
 #Vulnerability Discussion
@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230347"
 GrpTitle="SRG-OS-000028-GPOS-00009"
-RuleID="SV-230347r599732_rule"
+RuleID="SV-230347r627750_rule"
 STIGID="RHEL-08-020030"
 Results="./Results/$GrpID"
 

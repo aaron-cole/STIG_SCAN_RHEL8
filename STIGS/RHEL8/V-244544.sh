@@ -5,10 +5,10 @@
 #
 
 #STIG Identification
-GrpID="V-230501"
-GrpTitle="SRG-OS-000112-GPOS-00057"
-RuleID="SV-230501r599732_rule"
-STIGID="RHEL-08-040060"
+GrpID="V-244544"
+GrpTitle="SRG-OS-000297-GPOS-00115"
+RuleID="SV-244544r743881_rule"
+STIGID="RHEL-08-040101"
 Results="./Results/$GrpID"
 
 #Remove File if already there
@@ -23,8 +23,10 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if rpm -q openssh-server >> $Results; then
+echo "Running status- $(systemctl is-active firewalld)" >> $Results
+
+if [ "$(systemctl is-active firewalld)" == "active" ]; then
  echo "Pass" >> $Results
 else 
- echo "Fail" >> $Results 
+ echo "Fail" >> $Results
 fi

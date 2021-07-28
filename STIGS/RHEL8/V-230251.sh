@@ -7,7 +7,7 @@
 #STIG Identification
 GrpID="V-230251"
 GrpTitle="SRG-OS-000250-GPOS-00093"
-RuleID="SV-230251r599732_rule"
+RuleID="SV-230251r743937_rule"
 STIGID="RHEL-08-010290"
 Results="./Results/$GrpID"
 
@@ -23,28 +23,12 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if grep "CRYPTO_POLICY=" /etc/sysconfig/sshd | grep -v "^#" >> $Results; then
- echo "CRYPTO_POLICY is defined in /etc/sysconfig/sshd" >> $Results
- echo "Fail" >> $Results
+grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/opensshserver.config | sed 's/.*MACs=//g' | awk '{print $1}' >> $Results
+
+if [ "$(grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/opensshserver.config | sed 's/.*MACs=//g' | awk '{print $1}')" == "hmac-sha2-512,hmac-sha2-256" ]; then  
+ echo "Pass" >> $Results
 else
- if [ "$(update-crypto-policies --show)" == "FIPS" ]; then
-  update-crypto-policies --show >> $Results
-  grep "^MACs " /etc/crypto-policies/back-ends/openssh.config >> $Results
-  if [ "$(grep "^MACs " /etc/crypto-policies/back-ends/openssh.config | awk '{print $2}')" == "hmac-sha2-512,hmac-sha2-256" ]; then
-   grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/opensshserver.config | sed 's/.*MACs=//g' | awk '{print $1}' >> $Results
-   if [ "$(grep "^CRYPTO_POLICY=" /etc/crypto-policies/back-ends/opensshserver.config | sed 's/.*MACs=//g' | awk '{print $1}')" == "hmac-sha2-512,hmac-sha2-256" ]; then  
-    echo "Pass" >> $Results
-   else
-    echo "MACs not correctly definined in /etc/crypto-policies/back-ends/opensshserver.config" >> $Results
-    echo "Fail" >> $Results
-   fi	
-  else
-   echo "MACs not correctly definined in /etc/crypto-policies/back-ends/openssh.config" >> $Results
-   echo "Fail" >> $Results
-  fi
- else
-  echo "System-wide crypto policy is not FIPS" >> $Results
-  echo "Fail" >> $Results
- fi
-fi
+ echo "MACs not correctly definined in /etc/crypto-policies/back-ends/opensshserver.config" >> $Results
+ echo "Fail" >> $Results
+fi	
  
