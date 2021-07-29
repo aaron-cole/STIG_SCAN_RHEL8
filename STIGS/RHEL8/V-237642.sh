@@ -23,9 +23,9 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if grep '!targetpw' /etc/sudoers /etc/sudoers.d/* | grep "Defaults" | grep -v "^#"  2>>$Results >> $Results; then 
- if grep '!rootpw' /etc/sudoers /etc/sudoers.d/*  | grep "Defaults" | grep -v "^#" 2>>$Results >> $Results; then 
-  if grep '!runaspw' /etc/sudoers /etc/sudoers.d/*  | grep "Defaults" | grep -v "^#" 2>>$Results >> $Results; then 
+if grep '!targetpw' /etc/sudoers /etc/sudoers.d/* 2>>$Results | grep "Defaults" | grep -v "^#" >> $Results; then 
+ if grep '!rootpw' /etc/sudoers /etc/sudoers.d/* 2>>$Results | grep "Defaults" | grep -v "^#" >> $Results; then 
+  if grep '!runaspw' /etc/sudoers /etc/sudoers.d/* 2>>$Results | grep "Defaults" | grep -v "^#" >> $Results; then 
    echo "Pass" >> $Results
   else 
    echo "Fail" >> $Results

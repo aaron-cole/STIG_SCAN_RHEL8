@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if grep 'timestamp_timeout=0' /etc/sudoers /etc/sudoers.d/* | grep "Defaults" | grep -v "^#" 2>>$Results  >> $Results; then  
+if grep 'timestamp_timeout=0' /etc/sudoers /etc/sudoers.d/* 2>>$Results | grep "Defaults" | grep -v "^#" >> $Results; then  
  echo "Pass" >> $Results
 else
  echo "Fail" >> $Results
