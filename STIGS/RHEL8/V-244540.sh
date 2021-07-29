@@ -34,5 +34,6 @@ done
 if [ "$scorecheck" != 0 ]; then
  echo "Fail" >> $Results 
 else 
+ echo "No entries found" >> $Results
  echo "Pass" >> $Results
 fi

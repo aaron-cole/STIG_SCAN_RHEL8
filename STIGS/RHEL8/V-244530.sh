@@ -29,6 +29,6 @@ if [ -e /boot/grub2/grub.cfg ]; then
 elif findmnt /boot/efi | grep nosuid >> $Results; then
  echo "Pass" >> $Results
 else
- echo "/boot is not mounted with the required options" >> $Results
+ echo "/boot/efi is not mounted with the required options" >> $Results
  echo "Fail" >> $Results
 fi

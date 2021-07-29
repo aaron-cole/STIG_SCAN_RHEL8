@@ -22,18 +22,9 @@ echo $STIGID >> $Results
 ##END of Automatic Items##
 
 ###Check###
-scorecheck=0
 
-for package in openssl-pkcs11 esc ; do
- if rpm -q $package >> $Results; then
-  echo "" >> /dev/null
- else
- ((scorecheck+=1))
- fi
-done
-		
-if [ "$scorecheck" != 0 ]; then
- echo "Fail" >> $Results 
-else 
+if rpm -q openssl-pkcs11 >> $Results; then
  echo "Pass" >> $Results
+else
+ echo "Fail" >> $Results 
 fi

@@ -32,13 +32,13 @@ find /etc -type f -name "*.keytab" 2>>/dev/null >> $Results
  fi
 }
 
-if rpm -qi krb5-server >> $Results; then
+if rpm -q krb5-server >> $Results; then
  if [ "$(rpm -qi krb5-server | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "17-18" ] ||  [ "$(rpm -qi krb5-server | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "18" ]; then
   echo "NA" >> $Results
  else
   fncheck
  fi
-elif rpm -qi krb5-workstation >> $Results; then
+elif rpm -q krb5-workstation >> $Results; then
  if [ "$(rpm -qi krb5-workstation | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "17-18" ] ||  [ "$(rpm -qi krb5-workstation | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "18" ]; then
   echo "NA" >> $Results
  else

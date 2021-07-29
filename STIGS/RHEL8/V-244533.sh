@@ -28,9 +28,10 @@ if (( $(echo "$rhel8version < 8.2" | bc -l) )); then
  echo "RHEL Version is $rhel8version" >> $Results
  echo "NA" >> $Results
 else
- if grep "^auth.*required.*pam_faillock.so preauth" /etc/pam.d/system-auth >> $Results; then
+ if grep "^auth.*[required|requisite].*pam_faillock.so.*preauth" /etc/pam.d/system-auth >> $Results; then
   echo "Pass" >> $Results
  else
+  grep "^auth.*pam_faillock.so.*preauth" /etc/pam.d/system-auth >> $Results
   echo "auth preauth not set in $filetocheck" >> $Results
   echo "Fail" >> $Results  
  fi
