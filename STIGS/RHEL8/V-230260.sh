@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
-if [ $(find -L /lib /lib64 /usr/lib /usr/lib64 -perm /0022 -type f) ] ; then 
+if find -L /lib /lib64 /usr/lib /usr/lib64 -perm /0022 -type f >> $Results ; then 
  echo "Fail" >> $Results 
 else
  echo "Nothing Found" >> $Results 

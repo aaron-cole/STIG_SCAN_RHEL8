@@ -24,8 +24,7 @@ echo $STIGID >> $Results
 ###Check###
 
 if rpm -q krb5-workstation >> $Results; then
- rpm -qi krb5-workstation | grep "^Version" >> $Results
- if [ "$(rpm -qi krb5-workstation | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "17-18")" ] ||  [ "$(rpm -qi krb5-workstation | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "18")" ]; then
+ if [ "$(rpm -qi krb5-workstation | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "17-18" ] ||  [ "$(rpm -qi krb5-workstation | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "18" ]; then
   echo "NA" >> $Results
  else
   echo "Fail" >> $Results

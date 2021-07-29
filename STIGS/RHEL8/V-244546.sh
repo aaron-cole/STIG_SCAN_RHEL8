@@ -30,8 +30,8 @@ if grep "^permissive = 0" /etc/fapolicyd/fapolicyd.conf >> $Results; then
   if [ -e /etc/fapolicyd/fapolicyd.mounts ]; then
    cat /etc/fapolicyd/fapolicyd.mounts >> $Results
    for item in $list; do
-    if ! grep "$item" /etc/fapolicyd/fapolicyd.mounts; then
-	 echo "$item not found in /etc/fapolicyd/fapolicyd.mounts"
+    if ! grep "$item" /etc/fapolicyd/fapolicyd.mounts >> /dev/null; then
+	 echo "$item not found in /etc/fapolicyd/fapolicyd.mounts" >> $Results
 	 ((scorecheck+=1))
 	fi
    done

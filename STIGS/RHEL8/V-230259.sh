@@ -23,7 +23,7 @@ echo $STIGID >> $Results
 
 ###Check###
 
-findfile="$(find -L /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin ! -group root -a ! -group tty -a ! -group slocate -a ! -group postgrop)"
+findfile="$(find -L /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin ! -group root -a ! -group tty -a ! -group slocate -a ! -group postdrop 2>> /dev/null)"
 
 if [ -n "$findfile" ]; then
  echo "files found $findfile" >> $Results

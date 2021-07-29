@@ -34,9 +34,9 @@ for itemtocheck in $itemstocheck; do
  fi
 done
 
- if [ "$scorecheck" != 0 ]; then
-  echo "Fail" >> $Results 
- else 
-  echo "Pass" >> $Results
- fi
+if [ "$scorecheck" != 0 ]; then
+ echo "Fail" >> $Results 
+else 
+ echo "Pass" >> $Results
 fi
+

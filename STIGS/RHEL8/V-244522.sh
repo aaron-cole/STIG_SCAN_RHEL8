@@ -27,7 +27,7 @@ if [ -e /boot/efi/EFI/redhat/grub.cfg ]; then
  echo "UEFI" >> $Results
  echo "NA" >> $Results
 elif [ -e /boot/grub2/user.cfg ] && [ "$(grep 'set superusers=' /boot/grub2/grub.cfg)" ]; then
- grep 'set superusers="root"' /boot/grub2/grub.cfg >> $Results; then
+ grep 'set superusers="root"' /boot/grub2/grub.cfg >> $Results
  echo "Pass" >> $Results
 else
  echo "Superusers not set" >> $Results 

@@ -22,19 +22,28 @@ echo $STIGID >> $Results
 ##END of Automatic Items##
 
 ###Check###
-
-if [ "$(rpm -qi krb5-server | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "17-18")" ] ||  [ "$(rpm -qi krb5-server | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "18")" ]; then
- rpm -qi krb5-server >> $Results
- echo "NA" >> $Results
-elif  if [ "$(rpm -qi krb5-workstation | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "17-18")" ] ||  [ "$(rpm -qi krb5-workstation | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "18")" ]; then
- rpm -qi krb5-workstation >> $Results
- echo "NA" >> $Results
-else
- find /etc -type f -name "*.keytab" 2>>/dev/null >> $Results
+fncheck {
+find /etc -type f -name "*.keytab" 2>>/dev/null >> $Results
  if [ "$(find /etc -type f -name "*.keytab" 2>>/dev/null )" ]; then
   echo "Fail" >> $Results
  else
   echo "Nothing Found" >> $Results
   echo "Pass" >> $Results
  fi
+}
+
+if rpm -qi krb5-server >> $Results; then
+ if [ "$(rpm -qi krb5-server | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "17-18")" ] ||  [ "$(rpm -qi krb5-server | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "18")" ]; then
+  echo "NA" >> $Results
+ else
+  fncheck
+ fi
+elif rpm -qi krb5-workstation >> $Results; then
+ if [ "$(rpm -qi krb5-workstation | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "17-18")" ] ||  [ "$(rpm -qi krb5-workstation | grep "^Version" | awk '{print $3}' | cut -f 2 -d".")" = "18")" ]; then
+  echo "NA" >> $Results
+ else
+  fncheck
+ fi
+else
+ fncheck 
 fi
