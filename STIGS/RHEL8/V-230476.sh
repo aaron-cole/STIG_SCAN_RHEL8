@@ -24,6 +24,11 @@ echo $STIGID >> $Results
 ###Check###
 
 df -h /var/log/audit >> $Results
-echo "Do you have a weeks worth of audit logs?" >> $Results
-echo "Manual check" >> $Results
-echo "Fail" >> $Results
+if [ "$(find /var/log/audit -mtime +7 -type f)" ]; then
+ find /var/log/audit -mtime +7 -type f -exec ls -l '{}' \; >> $Results
+ echo "Pass" >> $Results
+else
+ echo "Do you have a weeks worth of audit logs?" >> $Results
+ echo "Manual check" >> $Results
+ echo "Fail" >> $Results
+fi
